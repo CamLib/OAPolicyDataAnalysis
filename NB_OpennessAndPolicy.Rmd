@@ -5,4 +5,24 @@ output:
   github_document: default
 ---
 
-This is where we shall start to investigate the impact of Openness on the use of articles in policy.
+```{r setup, include = FALSE}
+library(tidyverse)
+articles <- read_csv("data/master.csv")
+mentions <- read_csv("data/mentions.csv")
+open_closed <- read_csv("data/open_closed.csv")
+open_closed_articles <- left_join(articles, open_closed)
+open_closed_with_mentions <- left_join(open_closed_articles, mentions)
+```
+
+
+This is where we shall start to investigate the impact of Openness on the use of articles in policy. We want to know if open articles have more policy mentions than closed articles. This is the basic question but we should also factor in time since publication.
+
+# Simple how many are open v how many are closed
+```{r open v closed}
+summarise(
+group_by(open_closed_articles, known_to_be_open),
+total = n()
+)
+```
+
+
