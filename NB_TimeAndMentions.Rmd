@@ -1,0 +1,28 @@
+---
+title: "Time as an important variable"
+output: html_notebook
+---
+
+```{r setup, include = FALSE}
+library(tidyverse)
+library(lubridate)
+articles <- read_csv("data/master.csv")
+```
+
+This notebook focuses on time as an important variable.
+
+# Does the mentions increase with the time since publication
+```{r mentions with time}
+articles_since_publication <- mutate(
+  filter(articles, print_publication_date > "2013-01-01"), 
+  days_since_publication = ymd("2018-07-13")-as_date(print_publication_date) 
+)
+
+ggplot(data = articles_since_publication) +
+  geom_point(mapping = aes(x = days_since_publication, y = total_mentions))
+
+
+```
+
+It turns out that the Scopus publication dates and Altmetric dates do not match. The Scopus data should all have been published from 1/1/13 but the Altmetric data shows a number of articles have been published before this date including 1965!
+
