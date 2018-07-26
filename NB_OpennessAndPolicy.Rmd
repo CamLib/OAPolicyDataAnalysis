@@ -1,0 +1,8 @@
+---
+title: "Policy Mentions in Open and closed Articles"
+output: 
+  html_notebook: default
+  github_document: default
+---
+
+This is where we shall start to investigate the impact of Openness on the use of articles in policy.
