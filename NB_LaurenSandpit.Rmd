@@ -38,3 +38,29 @@ ggplot(data = news_mentions_aggregated) +
 
 
 ```
+# average time to first news mention in open versus closed articles
+
+The below filters out just the news mentions, groups them and summarises on the min(date_posted) to give us the earliest news mention. This is a direct copy of the average time to first policy mention code but with 'news' replacing 'policy'.
+
+Then it subtracts the date of publication from the first news mention date to give us the number of days between publication and mention in news.
+
+And then it takes and average and standard deviation of those times for open and closed papers.
+
+The SD indicates that it is better to publish in a closed journal if you want your paper cited in policy quicker... Why might that be?
+
+```{r Average time to first news mention}
+
+open_closed_with_first_news_mention <- filter(open_closed_with_mentions, source == 'news') %>%
+                                          group_by(article_title, journal_title, print_publication_date, known_to_be_open) %>%
+                                          summarise(first_news_pub_date = min(date_posted)) %>%
+                                          mutate(
+                                             days_to_first_news_mention = as_date(first_news_pub_date) - as_date(print_publication_date) 
+                                          )
+
+summarise(
+  group_by(open_closed_with_first_news_mention, known_to_be_open),
+  mean_average_days_to_first_news_mention = mean(days_to_first_news_mention, na.rm = TRUE),
+  sd_average_days_to_first_news_mention = sd(days_to_first_news_mention, na.rm = TRUE)
+)
+
+```

@@ -52,5 +52,7 @@ select(pnas_papers, article_title, known_to_be_open, open_access_status)
 
 However, the above indicates that Unpaywall / Dimensions got the papers from PNAS's own website - hence their definition of 'open' is a little different.
 
+Unpaywalled does not make judgements about what constitutes an open access article - if it is freely available online then it is open access in their book which means the PNAS open access option is compliant. I suppose this doesn't really matter in the terms of policy inclusion as it is the free availability of the article that is important rather than what licence it has etc.
+
 
 
