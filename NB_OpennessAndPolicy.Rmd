@@ -53,7 +53,8 @@ articles_with_policy_totals <- left_join(open_closed_articles, policy_mention_to
 
 summarise(
   group_by(articles_with_policy_totals, known_to_be_open),
-  average_policy_mentions = mean(policy_mention_total)
+  average_policy_mentions = mean(policy_mention_total, na.rm = TRUE),
+  sd_policy_mentions = sd(policy_mention_total, na.rm = TRUE)
 )
 
 ```
