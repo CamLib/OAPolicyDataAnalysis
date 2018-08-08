@@ -9,6 +9,7 @@ This notebook is just somewhere for Lauren to try stuff out.
 library(tidyverse)
 library(lubridate)
 articles <- read_csv("data/master.csv")
+subjects <- read_csv("data/subjects.csv")
 ```
 
 looking at number of news mentions over time. First need to join mentions and articles_since_publication. Next group by DOI.
@@ -63,4 +64,29 @@ summarise(
   sd_average_days_to_first_news_mention = sd(days_to_first_news_mention, na.rm = TRUE)
 )
 
+
 ```
+
+# looking at subjects
+load in subjects
+join to articles
+just select scopus subjects
+
+
+```{r}
+articles_with_Subjects <- left_join(articles, subjects)
+subject_totals <- filter(articles_with_Subjects, subject_scheme == "scopus") %>%
+  group_by(subject_name) %>%
+  summarise(total_articles = n()) %>%
+  arrange (desc(total_articles))
+
+
+```
+
+
+
+
+
+
+
+
