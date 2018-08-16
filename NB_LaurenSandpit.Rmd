@@ -82,6 +82,15 @@ subject_totals <- filter(articles_with_Subjects, subject_scheme == "scopus") %>%
 
 
 ```
+# investigating the odd articles that Scopus returned as published between 2013-5 and Altmetric thought were published pre 2013.
+Filter out articles that published pre-2013.
+```{r articles published pre-2013}
+articles_With_dodgy_dates <- filter(articles, print_publication_date < "2013-01-01")
+```
+
+There are 106 articles with print_publication_date older than 1/1/13. Random sample shows:
+10.1002/jid.1820 - WoS & Scopus both show publication date in Oct 2013, Altmetric in Aug 2011. Paper was first published **online** in 2011. 
+10.1097/ncq.0b013e3182902404 - WoS shows date of Oct-Dec 2013, Scopus is Oct 2013, Altmetric is 1970, article was published online in April 2013.
 
 
 
