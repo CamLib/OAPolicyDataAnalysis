@@ -22,7 +22,7 @@ We discovered that the print_publication_dates contained many before the lower d
 This is where we shall start to investigate the impact of Openness on the use of articles in policy. We want to know if open articles have more policy mentions than closed articles. This is the basic question but we should also factor in time since publication.
 
 # Simple how many are open v how many are closed
-```{r open v closed}
+```{r open v closed - used in paper}
 summarise(
 group_by(open_closed_articles, known_to_be_open),
 total = n()
@@ -69,7 +69,7 @@ And then it takes and average and standard deviation of those times for open and
 
 The SD indicates that it is better to publish in a closed journal if you want your paper cited in policy quicker... Why might that be?
 
-```{r Average time to first policy mention}
+```{r Average time to first policy mention - used in paper}
 
 open_closed_with_first_policy_mention <- filter(open_closed_with_mentions, source == 'policy') %>%
                                           group_by(article_title, journal_title, print_publication_date, known_to_be_open) %>%
